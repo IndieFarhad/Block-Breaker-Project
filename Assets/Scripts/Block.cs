@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
-    Ball ball;
+    Level level;
+
+
 
     public void Start()
     {
-        ball = FindObjectOfType<Ball>();
+        level = FindObjectOfType<Level>();
+        if (tag == "Breakable")
+        {
+            level.CountBreakableBlock();
+        }
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (tag == "Breakable")
         {
             Destroy(gameObject);
+            level.DamageBlock();
         }
 
        
