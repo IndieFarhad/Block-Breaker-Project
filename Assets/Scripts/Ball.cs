@@ -55,5 +55,10 @@ public class Ball : MonoBehaviour
     private void BallTweakOnWall()
     {
         Vector2 BallTweak = new Vector2(randomFactor, randomFactor);
+
+        if (hasStarted)
+        {
+            myRigidbody.velocity += BallTweak;
+        }
     }
 }
