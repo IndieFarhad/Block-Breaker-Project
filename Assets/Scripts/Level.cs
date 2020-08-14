@@ -8,9 +8,14 @@ public class Level : MonoBehaviour
     [SerializeField] GameObject WinLabel;
 
 
-    public void CountBreakableBlock()
+    public void Start()
     {
         WinLabel.SetActive(false);
+
+    }
+
+    public void CountBreakableBlock()
+    {
         BreakableBlock++;
     }
 
