@@ -7,6 +7,7 @@ public class Ball : MonoBehaviour
 {
     //Reference
     [SerializeField] Paddle paddle1;
+    [SerializeField] float randomFactor = 0.2f;
 
     Rigidbody2D myRigidbody;
     bool hasStarted;
@@ -36,7 +37,7 @@ public class Ball : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             hasStarted = true;
-            myRigidbody.velocity = new Vector2(4f, 15f);
+            myRigidbody.velocity = new Vector2(4f, 18f);
         }
     }
 
@@ -44,5 +45,15 @@ public class Ball : MonoBehaviour
     {
         Vector2 paddlePos = new Vector2(paddle1.transform.position.x, paddle1.transform.position.y);
         transform.position = BallToPaddleDistance + paddlePos;
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        BallTweakOnWall();  //Prevent Ball Boring Loop
+    }
+
+    private void BallTweakOnWall()
+    {
+        Vector2 BallTweak = new Vector2(randomFactor, randomFactor);
     }
 }
