@@ -7,11 +7,13 @@ public class Level : MonoBehaviour
 {
     [SerializeField] int BreakableBlock;
     [SerializeField] GameObject WinLabel;
+    [SerializeField] GameObject Losslabel;
 
 
     public void Start()
     {
         WinLabel.SetActive(false);
+        
 
     }
 
@@ -21,10 +23,10 @@ public class Level : MonoBehaviour
     }
 
 
-    public void DamageBlock()
+    public void DamageBlock()  
     {
         BreakableBlock--;
-        if(BreakableBlock <= 0)
+        if(BreakableBlock <= 0)   //If No block then load winLabel
         {
             WinLabel.SetActive(true);
             Time.timeScale = 0;
@@ -32,9 +34,16 @@ public class Level : MonoBehaviour
         }
     }
 
-    public void LoadNextScene()
+    public void LoadNextScene()      //Next Scene Button
     {
-        SceneManager.LoadScene(1);
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex + 1);
+    }
+
+    public void LoadRestartScene()  //Reload to CurrentScene button
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
     }
 
     
